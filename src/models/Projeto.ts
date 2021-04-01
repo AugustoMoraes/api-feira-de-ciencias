@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuid} from 'uuid'
 import { AreaPesquisa } from "./AreaPesquisa";
+import { Escolaridade } from "./Escolaridade";
 
 @Entity('projetos')
 class Projeto{
@@ -17,6 +18,9 @@ class Projeto{
     @ManyToOne(type => AreaPesquisa, projeto => Projeto )
     areaPesquisa: AreaPesquisa
 
+    @ManyToOne(type => Escolaridade, peojeto => Projeto)
+    escolaridade: Escolaridade
+    
     constructor(){
         if(!this.id){
             this.id = uuid()
