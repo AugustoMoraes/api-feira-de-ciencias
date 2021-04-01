@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuid} from 'uuid'
+import { AreaPesquisa } from "./AreaPesquisa";
 
 @Entity('projetos')
 class Projeto{
@@ -12,6 +13,9 @@ class Projeto{
 
     @Column()
     email: string
+
+    @ManyToOne(type => AreaPesquisa, projeto => Projeto )
+    areaPesquisa: AreaPesquisa
 
     constructor(){
         if(!this.id){

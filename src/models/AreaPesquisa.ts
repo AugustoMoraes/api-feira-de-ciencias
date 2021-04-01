@@ -1,5 +1,6 @@
 import {v4 as uuid} from 'uuid'
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Projeto } from './Projeto';
 
 @Entity("areas_pesquisa")
 class AreaPesquisa{
@@ -16,6 +17,8 @@ class AreaPesquisa{
     @Column()
     nome: string
 
+    @OneToMany(type => Projeto, areaPesquisa => AreaPesquisa)
+    projeto: Projeto
 }
 
 export {AreaPesquisa}
