@@ -16,10 +16,10 @@ class Projeto{
     @Column()
     email: string
 
-    @ManyToOne(type => AreaPesquisa, projeto => Projeto )
+    @ManyToOne(type => AreaPesquisa, projeto => Projeto, {eager: true} )
     areaPesquisa: AreaPesquisa
 
-    @ManyToOne(type => Escolaridade, peojeto => Projeto)
+    @ManyToOne(type => Escolaridade, peojeto => Projeto, {eager: true})
     escolaridade: Escolaridade
     
     @OneToMany(type => Participante, projeto => Projeto)

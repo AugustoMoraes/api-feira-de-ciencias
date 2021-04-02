@@ -17,6 +17,15 @@ class ProjetoController{
         await projetoRepository.save(projeto)
 
         return response.status(201).json(projeto)
+    }
+
+    async show(request: Request, response: Response){
+
+        const projetoRepository = getCustomRepository(ProjetoRepository)
+
+        const listProjetos = await projetoRepository.find()
+
+        return response.json(listProjetos)
 
     }
 }
