@@ -20,7 +20,7 @@ class Participante{
     @Column()
     escola: string
     
-    @ManyToOne(type => Projeto, participante => Participante)
+    @ManyToOne(type => Projeto, participante => Participante, {eager: true})
     projeto: Projeto
 
     constructor(){

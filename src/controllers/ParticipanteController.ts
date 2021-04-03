@@ -31,7 +31,7 @@ class ParticipanteController{
         const participantesAll = await participanteRepository.find()
 
         return response.status(201).json(participantesAll)
-
     }
+    
 }
 export {ParticipanteController}
