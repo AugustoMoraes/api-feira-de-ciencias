@@ -54,7 +54,7 @@ class AvaliadorController{
 
         const loginAvaliador = {nome,usuario, senha}
         
-        return response.json({loginAvaliador})
+        return response.send({loginAvaliador})
     }
     async show(request: Request, response: Response){
 
