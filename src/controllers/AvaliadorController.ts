@@ -11,16 +11,21 @@ class AvaliadorController{
 
         const usuarioExist = await avaliadorRepository.findOne({usuario})
         
-        if(usuarioExist){
+        if(usuarioExist)
             return response.status(401).json({error: "Este usuário ja existe"})
-        }
-        if(usuario.indexOf(' ')){
+        
+        if(usuario.indexOf(' '))
             return response.status(401).json({error: 'O usuário não pode conter espaços em branco'})
-        }
-
-        if(senha.indexOf(' ')){
+        
+        /** 
+        const isSenhaCorreta = await avaliadorRepository.findOne({usuario,senha})
+        if(!isSenhaCorreta)
+            return response.status(401).json({error: 'A senha incorreta!'})
+        */
+        if(senha.indexOf(' '))
             return response.status(401).json({error: 'A senha não pode conter espaços em branco'})
-        }
+        
+        
         const avaliador = avaliadorRepository.create({
             nome,
             usuario,
@@ -32,6 +37,25 @@ class AvaliadorController{
         return response.status(201).json(avaliador)
     }
 
+    async login(request: Request, response: Response){
+        
+        const {nome,usuario, senha} = request.body
+
+        const avaliadorRepository = getCustomRepository(AvalidadorRepository)
+
+        const isValidUser = await avaliadorRepository.findOne({usuario})
+        if(!isValidUser)
+            return response.status(401).json({error: 'Usuário não existe!'})
+        
+        const isValidPassword = await avaliadorRepository.findOne({usuario,senha })
+        
+        if(!isValidPassword)
+            return response.status(401).json({error: 'Senha Inválida!'})
+
+        const loginAvaliador = {nome,usuario, senha}
+        
+        return response.json({loginAvaliador})
+    }
     async show(request: Request, response: Response){
 
         const avaliadorRepository = getCustomRepository(AvalidadorRepository)
