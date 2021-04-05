@@ -11,11 +11,11 @@ class AvaliacaoProjetoController{
         
         const avaliacaoProjetoReposytory = getCustomRepository(AvaliacaoProjetoRepository)
 
+        //  Verifica se um avaliador já avaliou o 
         const isProjetoAvaliado = await avaliacaoProjetoReposytory.findOne({
             projeto: {id : projeto.id},
             avaliador:{id: avaliador.id}})
-        console.log(`\n\n\n\n ${projeto} \n ${avaliador}\n\n\n\n`)
-        //  LÓGICA ERRADA
+        
         if(isProjetoAvaliado){
             return response.status(401).json({error: "Este Projeto ja foi avaliado"})
         }
