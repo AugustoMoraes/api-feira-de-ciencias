@@ -4,6 +4,12 @@ import {ProjetoRepository} from '../repositories/ProjetoRepository'
 
 class ProjetoController{
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Criação de um projeto, passando a escolaridade e area de pesquisa que irá concorrer
+     */
     async create(request: Request, response: Response){
 
         const {nome, email, escolaridade, areaPesquisa} = request.body
@@ -19,6 +25,12 @@ class ProjetoController{
         return response.status(201).json(projeto)
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Lista todos os projetos participantes
+     */
     async show(request: Request, response: Response){
 
         const projetoRepository = getCustomRepository(ProjetoRepository)

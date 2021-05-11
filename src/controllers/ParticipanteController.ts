@@ -4,6 +4,13 @@ import { ParticipanteRepository } from "../repositories/ParticipanteRepository";
 
 
 class ParticipanteController{
+
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Criação de um participante adicionando o projeto e a escola que ele participa
+     */
     async create(request: Request, response: Response){
 
         const {nome, tipo, idade, escola, projeto, } = request.body
@@ -24,6 +31,12 @@ class ParticipanteController{
 
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Lista todos os participantes que estão cadastrados
+     */
     async show(request: Request, response: Response){
 
         const participanteRepository = getCustomRepository(ParticipanteRepository)

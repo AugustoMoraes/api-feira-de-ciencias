@@ -17,7 +17,7 @@ class Projeto{
     @Column()
     email: string
 
-    @ManyToOne(type => AreaPesquisa, projeto => Projeto, {eager: true} )
+    @ManyToOne(type => AreaPesquisa, projeto => Projeto, {onDelete:"CASCADE",eager: true})
     areaPesquisa: AreaPesquisa
 
     @ManyToOne(type => Escolaridade, peojeto => Projeto, {eager: true})

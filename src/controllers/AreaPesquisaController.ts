@@ -4,6 +4,12 @@ import { AreaPesquisaRepository } from '../repositories/AreaPesquisaRepository'
 
 class AreaPesquisaController{
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Criação de uma área de Pesquisa
+     */
     async create(request: Request, response: Response){
 
         const {nome} = request.body

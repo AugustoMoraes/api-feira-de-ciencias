@@ -5,6 +5,12 @@ import { EscolaridadeRepository } from '../repositories/EscolaridadeRepository'
 
 class EscolaridadeController{ 
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Criação do nível de escolaridade
+     */
     async create(request: Request, response: Response){
         const {nome} = request.body
 

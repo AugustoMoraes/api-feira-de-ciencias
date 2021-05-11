@@ -29,8 +29,8 @@ router.get('/avaliadores', avaliadorController.show)
 router.post('/participantes', participanteController.create)
 router.get('/participantes', participanteController.show)
 
-router.post('/avaliacaoProjeto', avaliacaoProjetoController.create)
-router.get('/avaliacaoProjeto', avaliacaoProjetoController.show)
-router.get('/avaliacaoProjeto/:id', avaliacaoProjetoController.listUmAvaliador)
+router.post('/avaliacao_projeto', avaliacaoProjetoController.create)
+router.get('/avaliacao_projeto', avaliacaoProjetoController.show)
+router.get('/avaliacao_projeto/:id', avaliacaoProjetoController.listUmAvaliador)
 
 export {router}
