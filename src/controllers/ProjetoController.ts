@@ -40,5 +40,6 @@ class ProjetoController{
         return response.json(listProjetos)
 
     }
+
 }
 export {ProjetoController}

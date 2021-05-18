@@ -55,5 +55,40 @@ class AvaliacaoProjetoController{
 
         return response.status(201).json(allProjetosAvaliador)
     }
+
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns Retorna a pontuação de um projeto
+     */
+    async pontuacaoProjeto(request: Request, response: Response){
+        
+        const avaliacaoProjetoRepository = getCustomRepository(AvaliacaoProjetoRepository)
+        const id = request.params.id
+
+        const {banner, dominioAssunto, postura, explicacao, relevancia,organizacao, projeto} = await 
+            avaliacaoProjetoRepository.findOne(id)
+        const teste = projeto
+        const pontuacao = banner + dominioAssunto + postura 
+                + explicacao + relevancia + organizacao 
+         // Falta listar o avaliador do projeto e verificar e soma todos os projetos avaliados
+        return response.status(201).json({pontuacao: pontuacao, projeto: teste})
+    }
+
+    async listPontuacao(request: Request, response: Response){
+        const avaliacaoProjetoRepository = getCustomRepository(AvaliacaoProjetoRepository)
+        // const id = request.params.id
+
+        const allAvaliacaoProjeto = await avaliacaoProjetoRepository.find()
+
+        const listPontuacao = allAvaliacaoProjeto.map(projeto => {
+            return projeto.banner + projeto.dominioAssunto + projeto.postura + 
+                projeto.explicacao + projeto.relevancia + projeto.organizacao
+        })
+
+        return response.status(201).json(listPontuacao)
+        
+    }
 }
 export {AvaliacaoProjetoController}
