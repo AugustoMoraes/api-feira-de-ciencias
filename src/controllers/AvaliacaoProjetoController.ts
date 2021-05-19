@@ -58,35 +58,46 @@ class AvaliacaoProjetoController{
 
     /**
      * 
-     * @param request 
+     * @param request recebe o id da avaliação
      * @param response 
-     * @returns Retorna a pontuação de um projeto
+     * @returns Retorna a pontuação de um projeto avaliado e os dados do projeto e do avaliador que avaliou 
      */
     async pontuacaoProjeto(request: Request, response: Response){
         
         const avaliacaoProjetoRepository = getCustomRepository(AvaliacaoProjetoRepository)
         const id = request.params.id
 
-        const {banner, dominioAssunto, postura, explicacao, relevancia,organizacao, projeto} = await 
+        const {banner, dominioAssunto, postura, explicacao, relevancia,organizacao, projeto, avaliador} = await 
             avaliacaoProjetoRepository.findOne(id)
-        const teste = projeto
+        
         const pontuacao = banner + dominioAssunto + postura 
                 + explicacao + relevancia + organizacao 
-         // Falta listar o avaliador do projeto e verificar e soma todos os projetos avaliados
-        return response.status(201).json({pontuacao: pontuacao, projeto: teste})
+         
+        return response.status(201).json({pontuacao: pontuacao, 
+                                            projeto: projeto,
+                                        avaliador: avaliador})
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @returns retorna a soma de cada avaliação e o nome do projeto
+     */
     async listPontuacao(request: Request, response: Response){
         const avaliacaoProjetoRepository = getCustomRepository(AvaliacaoProjetoRepository)
         // const id = request.params.id
-
+        
         const allAvaliacaoProjeto = await avaliacaoProjetoRepository.find()
 
         const listPontuacao = allAvaliacaoProjeto.map(projeto => {
-            return projeto.banner + projeto.dominioAssunto + projeto.postura + 
+            const pontuacao = projeto.banner + projeto.dominioAssunto + projeto.postura + 
                 projeto.explicacao + projeto.relevancia + projeto.organizacao
+            const projetoPontuado = projeto.projeto.nome
+            
+            return {pontuacao:pontuacao, projeto: projetoPontuado}
         })
-
+        
         return response.status(201).json(listPontuacao)
         
     }
