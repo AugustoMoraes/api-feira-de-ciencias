@@ -16,3 +16,6 @@ OBS: Caso ocorra algum erro, delete a migração que estar em src/database/migra
 1- typeorm migration:generate para gerar uma migração.
 2- typeorm migration:run para executar a migração criada e montar
 
+## Iniciar a API
+
+- yarn dev
