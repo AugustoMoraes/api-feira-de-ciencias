@@ -17,6 +17,8 @@ const participanteController = new ParticipanteController()
 const avaliacaoProjetoController = new AvaliacaoProjetoController()
 
 router.post("/areas_pesquisa", areaPesquisaController.create)
+//router.get("/areas_pesquisa", areaPesquisaController.show)
+router.get("/areas_pesquisa", areaPesquisaController.show)
 
 router.post("/escolaridades", escolaridadeController.create)
 

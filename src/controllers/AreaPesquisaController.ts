@@ -1,4 +1,4 @@
-import {Request, Response} from 'express'
+import {Request, response, Response} from 'express'
 import { getCustomRepository } from 'typeorm'
 import { AreaPesquisaRepository } from '../repositories/AreaPesquisaRepository'
 
@@ -22,6 +22,15 @@ class AreaPesquisaController{
 
         return response.status(201).json(areaPesquisa)
 
+    }
+
+    async show(request: Request, responde: Response){
+        
+        const areaPesquisaRepository = getCustomRepository(AreaPesquisaRepository)
+        
+        const areaPesquisaAll = await areaPesquisaRepository.find()
+
+        return response.status(201).json(areaPesquisaAll)
     }
 }
 
